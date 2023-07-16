@@ -28,18 +28,17 @@ def input_error(func):
 def add_contact(*args):
     name = Name(args[0])
     if len(args) == 2:
+        # name = Name(args[0])
         phone = Phone(args[1])
         rec: Record = address_book.get(str(name))
-        print(f"rec1 {rec}")
         if rec:
             return rec.add_phone(phone)
         rec = Record(name, phone)
     if len(args) > 2:
+        # name = Name(args[0])
         list_phones = []
         rec: Record = address_book.get(str(name))
-        print(f"rec2 {rec}")
         if rec:
-            print(f"rec50str {rec}")
             for i in range(1, len(args)):
                 list_phones.append(Phone(args[i]))
             return rec.add_phone(list_phones)
@@ -49,16 +48,19 @@ def add_contact(*args):
             rec = Record(name, list_phones)
 
             return address_book.add_record(rec)
-
+    else:
+        return "Unknown command"
 
 # змінити
+
+
 @input_error
 def change_phone(*args):
     name = Name(args[0])
     old_phone = Phone(args[1])
     new_phone = Phone(args[2])
     rec: Record = address_book.get(str(name))
-    print(rec)
+    # print(rec)
     if rec:
         return rec.change_phone(old_phone, new_phone)
     return f"No contact {name} in address book"
@@ -99,7 +101,7 @@ def remove_phone(*args):
     name = Name(args[0])
     phone = Phone(args[1])
     rec: Record = address_book.get(str(name))
-    print(rec)
+    # print(rec)
     if rec:
         return rec.remove_phone(phone)
     return f"No contact {name} in address book"

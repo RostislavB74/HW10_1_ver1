@@ -26,7 +26,6 @@ class Record:
     def __init__(self, name: Name, phone: Phone = None) -> None:
         self.name = name
         self.phones = []
-        print(f"phone in record{self.phones}")
         if phone:
             if isinstance(phone, list):
                 self.phones.extend(phone)
@@ -34,19 +33,12 @@ class Record:
                 self.phones.append(phone)
 
     def add_phone(self, phone: Phone):
-        print(f"phone in record{self.phones}")
-        print(f"from 55{phone}")
         if isinstance(phone, list):
-            # print(self.phones(self.name))
-            print(f"if list from 55{phone}")
-            # print(list)
-            # print(f"ab-class {phone}")
             for i in range(len(phone)):
                 if phone[i] not in [p for p in self.phones]:
                     self.phones.extend(phone)
-                    # self.phones.extend(list_phones)
-            return f"phone {self.phones} add to contact {self.name}"
-            # return f"{phone} present in phones of contact {self.name}"
+
+            return f"The contact {self.name} was updated"
         else:
             if phone.value not in [p.value for p in self.phones]:
                 self.phones.append(phone)
